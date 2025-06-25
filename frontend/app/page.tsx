@@ -13,7 +13,9 @@ export default function Home() {
     // Fetch popular books
     const fetchBooks = async () => {
       try {
-        const response = await axios.get("https://biblio-stht.onrender.com/get10TopBooks");
+         const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_API_BASE_URL}/get10TopBooks`
+        );
         setBooks(response.data); 
         console.log(response.data);
         setLoading(false);
