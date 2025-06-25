@@ -13,7 +13,7 @@ export default function Home() {
     // Fetch popular books
     const fetchBooks = async () => {
       try {
-        const response = await axios.get("http://127.0.0.1:8000/get10TopBooks");
+        const response = await axios.get("https://biblio-stht.onrender.com/get10TopBooks");
         setBooks(response.data); 
         console.log(response.data);
         setLoading(false);
