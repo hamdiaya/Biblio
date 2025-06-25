@@ -1,6 +1,6 @@
 'use client'
 import Hero from "@/components/hero";
-import Image from "next/image";
+
 import PopularBooks from "@/components/popularBooks";
 import { useEffect, useState } from "react";
 import axios from "axios";
@@ -37,7 +37,7 @@ export default function Home() {
       </div>
     );
   }
-  if (error) return <p>{error}</p>;
+  if (error) return <p className="h-screen">{error}</p>;
 
   return (
     <div>

@@ -5,9 +5,10 @@ import axios from 'axios';
 
 
 
-import React, {  use, useEffect, useState } from 'react';
+import React, {  useEffect, useState } from 'react';
 
-const  page = ({ params }: { params: Promise<{ book_title: string }> }) => {
+const  Page = ({ params }: { params: Promise<{ book_title: string }> }) => {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [books_info, setBooks_info] = useState<any>();
 
   const[title,setTitle]=useState("");
@@ -15,7 +16,7 @@ const  page = ({ params }: { params: Promise<{ book_title: string }> }) => {
   const [author_books,setauthor_books]=useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
-  const { book_title } = use(params);
+ 
   useEffect(() => {
     // Fetch popular books
     const fetchBooks = async () => {
@@ -36,7 +37,7 @@ const  page = ({ params }: { params: Promise<{ book_title: string }> }) => {
     };
 
     fetchBooks();
-  }, []);
+  }, [params]);
 
   if (loading) {
     return (
@@ -75,10 +76,21 @@ const  page = ({ params }: { params: Promise<{ book_title: string }> }) => {
      <h1 className=' text-[25px] font-semibold pb-8 '>Recommended for You</h1>
     
       {/* book container */}
+      
       <div className=' grid grid-cols-2 gap-[100px] pb-10 '>
           {
-            recommonded_books.map((book:any, index:number)=>{
-              return <BookCard key={index} title={book.title} author={book.book_authors} rating={book.book_rating} desc={book.book_desc} imgUrl={(book.image_url_y==''?"/not_found.jpg":book.image_url_y)} />
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            recommonded_books.map((book: any, index: number) => {
+              return (
+                <BookCard
+                  key={index}
+                  title={book.title}
+                  author={book.book_authors}
+                  rating={book.book_rating}
+                  desc={book.book_desc}
+                  imgUrl={book.image_url_y === '' ? "/not_found.jpg" : book.image_url_y}
+                />
+              );
             })
           }
            </div>
@@ -92,7 +104,8 @@ const  page = ({ params }: { params: Promise<{ book_title: string }> }) => {
        {/* book container */}
        <div className=' grid grid-cols-2 gap-[100px] '>
            {
-             author_books.map((book:any,index:number)=>{
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+             author_books.map((book: any, index: number) => {
                return <BookCard key={index} title={book.title} author={books_info.book_author} rating={book.book_rating} desc={book.book_desc} imgUrl={(book.image_url_y==''?"/not_found.jpg":book.image_url_y)}/>
              })
            }
@@ -104,4 +117,4 @@ const  page = ({ params }: { params: Promise<{ book_title: string }> }) => {
   );
 };
 
-export default page;
+export default Page;

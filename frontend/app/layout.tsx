@@ -24,7 +24,7 @@ export const metadata: Metadata = {
 
 export default function RootLayout({
   children,
-}: React.PropsWithChildren<{}>) {
+}: React.PropsWithChildren<object>) {
   return (
     <html lang="en">
       <body className={`${poppins.className} ${rubik.className}`}>
