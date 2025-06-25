@@ -22,7 +22,7 @@ app.add_middleware(
 async def get_top_10_books():
     try:
         # Load the rules DataFrame
-        df = pd.read_csv('data/final_rules2.csv')
+        df = pd.read_csv('./data/final_rules2.csv')
 
         # Sort by antecedent support in descending order
         df_sorted = df.sort_values(by="antecedent support", ascending=False)
@@ -75,13 +75,13 @@ async def get_top_10_books():
 async def get_top_10_authors():
     try:
         # Load the rules DataFrame
-        df = pd.read_csv('data/final_rules2.csv')
+        df = pd.read_csv('./data/final_rules2.csv')
 
         # Sort by antecedent support in descending order
         df_sorted = df.sort_values(by="antecedent support", ascending=False)
 
         # Load the books DataFrame
-        df_books = pd.read_csv('data/books.csv')
+        df_books = pd.read_csv('./data/books.csv')
 
         # Merge the two DataFrames based on the columns "antecedents" and "title"
         new_df = pd.merge(
@@ -115,8 +115,8 @@ async def get_top_10_authors():
 async def get_book_info(book_title: str):
     #Load data
    
-    df = pd.read_csv('data/final_rules2.csv')
-    df2 = pd.read_csv('data/books.csv')
+    df = pd.read_csv('./data/final_rules2.csv')
+    df2 = pd.read_csv('./data/books.csv')
     print(book_title)
     # Merge to get the book's general info
     new_df = pd.merge(

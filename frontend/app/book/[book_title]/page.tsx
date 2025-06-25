@@ -2,53 +2,10 @@
 import BookCard from '@/components/bookCard';
 import BookDetailsCard from '@/components/bookDetailsCard';
 import axios from 'axios';
-import { title } from 'process';
+
 
 
 import React, {  use, useEffect, useState } from 'react';
-
-const books:any=[
-  {
-    key:1,
-    title:"all the light we cannot see",
-    author:"anthony doerr",
-    rating:4.5,
-    desc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus morbi eleifend enim, tristique ",
-    imgUrl:"/livre.jpg"
-  },
-  {
-    key:2,
-    title:"all the light we cannot see",
-    author:"anthony doerr",
-    rating:4.5,
-    desc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus morbi eleifend enim, tristique ",
-    imgUrl:"/livre.jpg"
-  },
-  {
-    key:3,
-    title:"all the light we cannot see",
-    author:"anthony doerr",
-    rating:4.5,
-    desc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus morbi eleifend enim, tristique ",
-    imgUrl:"/livre.jpg"
-  },
-  {
-    key:4,
-    title:"all the light we cannot see",
-    author:"anthony doerr",
-    rating:4.5,
-    desc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus morbi eleifend enim, tristique ",
-    imgUrl:"/livre.jpg"
-  },{
-    key:5,
-    title:"all the light we cannot see",
-    author:"anthony doerr",
-    rating:4.5,
-    desc:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Purus morbi eleifend enim, tristique ",
-    imgUrl:"/livre.jpg"
-  }
-
-];
 
 const  page = ({ params }: { params: Promise<{ book_title: string }> }) => {
   const [books_info, setBooks_info] = useState<any>();
@@ -65,7 +22,7 @@ const  page = ({ params }: { params: Promise<{ book_title: string }> }) => {
       try {
         const title=(await params).book_title;
         setTitle(decodeURIComponent(title));
-        const response = await axios.get(`http://127.0.0.1:8000/getBookInfo/${title}`);
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_API_BASE_URL}/getBookInfo/${title}`);
        setBooks_info(response.data.general_info)
        setRecommonded_books(response.data.recommended_books)
        setauthor_books(response.data.author_books)
